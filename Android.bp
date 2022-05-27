@@ -6,3 +6,13 @@ hidl_package_root {
     name: "vendor.mediatek.hardware.mtkpower",
     path: "vendor/mediatek/opensource/interfaces/mtkpower",
 }
+
+hidl_package_root {
+    name: "vendor.mediatek.hardware.bluetooth",
+    path: "vendor/mediatek/opensource/interfaces/bluetooth",
+}
+
+hidl_package_root {
+    name: "vendor.mediatek.hardware.bluetooth.audio",
+    path: "vendor/mediatek/opensource/interfaces/bluetooth/audio",
+}
