@@ -1,0 +1,6 @@
+package vendor.mediatek.hardware.aee@1.0;
+
+interface IAee {
+    hangCopyData(handle hdl, string data) generates (int32_t ret);
+    sendToServer(string data) generates (int32_t ret);
+};

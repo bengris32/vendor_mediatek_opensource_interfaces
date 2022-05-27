@@ -16,3 +16,8 @@ hidl_package_root {
     name: "vendor.mediatek.hardware.bluetooth.audio",
     path: "vendor/mediatek/opensource/interfaces/bluetooth/audio",
 }
+
+hidl_package_root {
+    name: "vendor.mediatek.hardware.aee",
+    path: "vendor/mediatek/opensource/interfaces/aee",
+}
