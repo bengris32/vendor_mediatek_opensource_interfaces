@@ -1,0 +1,11 @@
+package vendor.mediatek.hardware.aee@1.1;
+
+import @1.0::IAee;
+import IAeeCallback;
+
+interface IAee extends @1.0::IAee {
+    deleteAeeFiles(bool del) generates (int32_t ret);
+    queryAeeDumpSize() generates (int32_t size);
+    queryAeeDumpStatus() generates (int32_t status);
+    setCallback(IAeeCallback callback) generates (int32_t ret);
+};

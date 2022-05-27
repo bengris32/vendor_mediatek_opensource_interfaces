@@ -1,0 +1,5 @@
+package vendor.mediatek.hardware.aee@1.1;
+
+interface IAeeCallback {
+    callbackToClient(string callback) generates (int32_t result);
+};
