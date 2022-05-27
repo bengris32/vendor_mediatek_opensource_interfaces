@@ -1,0 +1,91 @@
+/*
+ * Copyright 2020 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.1 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.1
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package vendor.mediatek.hardware.bluetooth.audio@2.2;
+
+import @2.1::BitsPerSample;
+import @2.1::ChannelMode;
+import @2.1::CodecCapabilities;
+import @2.1::CodecConfiguration;
+import @2.1::CodecType;
+import @2.1::PcmParameters;
+import @2.1::SampleRate;
+import @2.1::SessionType;
+
+enum SessionType : @2.1::SessionType {
+    LE_AUDIO_SOFTWARE_ENCODING_DATAPATH,
+    LE_AUDIO_SOFTWARE_DECODED_DATAPATH,
+    LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH,
+    LE_AUDIO_HARDWARE_OFFLOAD_DECODING_DATAPATH,
+};
+
+enum CodecType : @2.1::CodecType {
+    LC3 = 0x20,
+};
+
+enum SampleRate : @2.1::SampleRate {
+    RATE_8000 = 0x100,
+    RATE_32000 = 0x200,
+};
+
+struct PcmParameters {
+    SampleRate sampleRate;
+    ChannelMode channelMode;
+    BitsPerSample bitsPerSample;
+    uint32_t dataIntervalUs;
+};
+
+enum Lc3FrameDuration : uint8_t {
+    DURATION_10000US = 0x00,
+    DURATION_7500US = 0x01,
+};
+
+struct Lc3Parameters {
+    BitsPerSample pcmBitDepth;
+
+    SampleRate samplingFrequency;
+    Lc3FrameDuration frameDuration;
+    uint32_t octetsPerFrame;
+    uint8_t blocksPerSdu;
+};
+
+struct Lc3CodecCapabilities {
+    uint8_t supportedChannelCounts;
+    Lc3Parameters lc3Capabilities;
+};
+
+safe_union AudioCapabilities {
+    PcmParameters pcmCapabilities;
+    CodecCapabilities codecCapabilities;
+    Lc3CodecCapabilities leAudioCapabilities;
+};
+
+struct Lc3CodecConfiguration {
+    uint32_t audioChannelAllocation;
+    Lc3Parameters lc3Config;
+};
+
+safe_union AudioConfiguration {
+    PcmParameters pcmConfig;
+    CodecConfiguration codecConfig;
+    Lc3CodecConfiguration leAudioCodecConfig;
+};
+
+struct ConnParam {
+    uint32_t conn_handle_R;
+    uint32_t conn_handle_L;
+    uint32_t bn;
+};
